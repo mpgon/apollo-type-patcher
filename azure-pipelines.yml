@@ -1,20 +1,20 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+  - master
 
 pool:
-  vmImage: 'Ubuntu-16.04'
+  vmImage: "Ubuntu-16.04"
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '8.x'
-  displayName: 'Install Node.js'
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "8.x"
+    displayName: "Install Node.js"
 
-- script: |
-    yarn
-    yarn run bundle
-    yarn run check-types
-    yarn run test
-  displayName: 'yarn install and build'
+  - script: |
+      yarn
+      yarn build
+      yarn check-types
+      yarn test
+    displayName: "yarn build and test"

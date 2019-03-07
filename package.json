@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "jest",
-    "bundle": "webpack --mode=production",
+    "build": "webpack --mode=production",
     "check-types": "tsc"
   },
   "repository": {
