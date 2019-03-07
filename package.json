@@ -4,8 +4,9 @@
   "description": "type patcher for apollo-link-rest",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "webpack --mode=production"
+    "test": "jest",
+    "bundle": "webpack --mode=production",
+    "check-types": "tsc"
   },
   "repository": {
     "type": "git",
@@ -29,9 +30,13 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "^24.0.9",
     "babel-loader": "^8.0.5",
     "typescript": "^3.3.3333",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "jest": "^24.3.0"
   }
 }

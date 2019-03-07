@@ -1,5 +1,3 @@
-function Greeting(name: string) {
-  console.log(`Hello ${name}!`);
-}
+import typePatcher from "./TypePatcher";
 
-Greeting("Miguel");
+export default typePatcher;
