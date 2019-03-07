@@ -1,3 +1,3 @@
-import typePatcher from "./TypePatcher";
+import typePatcher from "./typePatcher";
 
 export default typePatcher;
