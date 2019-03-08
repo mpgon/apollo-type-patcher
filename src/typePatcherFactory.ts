@@ -4,7 +4,7 @@ function patch(
   data: any,
   root: string = "",
   rootValue: string = "",
-  types: Array<{ field: string; type: string }>,
+  types: Array<{ field: string; type: string }>
 ) {
   let patchSuccess = false;
   let addResult = false;
@@ -19,29 +19,26 @@ function patch(
   return patchSuccess;
 }
 
-export default function typePatcherFactory(CACHE_TYPES: {
+export default function typePatcherFactory(typeDefinition: {
   [key: string]: any;
-}): {
-  [key: string]: any;
-} {
+}) {
   const out: { [key: string]: any } = {
-    // eslint-disable-next-line
     self: function() {
       return this;
-    },
+    }
   };
   const typePatchers: { [key: string]: any } = {};
 
-  const types = Object.keys(CACHE_TYPES);
+  const types = Object.keys(typeDefinition);
 
   // create type patchers
   types.forEach(type => {
-    const fields = Object.keys(CACHE_TYPES[type]).filter(
-      field => field !== "__nested",
+    const fields = Object.keys(typeDefinition[type]).filter(
+      field => field !== "__nested"
     );
     const typesPatcher: Array<{ field: string; type: string }> = [];
     fields.forEach(field =>
-      typesPatcher.push({ field, type: CACHE_TYPES[type][field] }),
+      typesPatcher.push({ field, type: typeDefinition[type][field] })
     );
     typePatchers[type] = typesPatcher;
   });
@@ -57,11 +54,11 @@ export default function typePatcherFactory(CACHE_TYPES: {
         const patchSuccess = patch(data, pathAccumulator, type, typePatcher);
         if (patchSuccess || pathAccumulator === "") {
           // nested
-          const nestedFields = CACHE_TYPES[type].__nested
-            ? Object.keys(CACHE_TYPES[type].__nested)
+          const nestedFields = typeDefinition[type].__nested
+            ? Object.keys(typeDefinition[type].__nested)
             : [];
           nestedFields.forEach(nestedField => {
-            const nestedType = CACHE_TYPES[type].__nested[nestedField];
+            const nestedType = typeDefinition[type].__nested[nestedField];
             const nextPath =
               pathAccumulator === ""
                 ? nestedField
@@ -72,7 +69,7 @@ export default function typePatcherFactory(CACHE_TYPES: {
           });
         }
         return data;
-      }),
+      })
   );
   return out;
 }

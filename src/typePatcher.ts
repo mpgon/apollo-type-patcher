@@ -1,5 +1,5 @@
-import typePatcherFactory from "./factory";
+import typePatcherFactory from "./typePatcherFactory";
 
-export default function typePatcher(typedef: any): any {
-  return typePatcherFactory(typedef);
+export default function typePatcher(typeDefinition: any) {
+  return typePatcherFactory(typeDefinition);
 }

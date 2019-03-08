@@ -1,9 +1,3 @@
-interface IDATA {
-  [key: string]: any;
-}
-
-/* eslint-disable no-param-reassign */
-
 /**
  * Adds a __typename to an object/array with possible nested objects/arrays
  * e.g.
@@ -60,11 +54,11 @@ export default function addTypename(data: any, path: string, typename: string) {
  * @returns {any} the updated data
  */
 function recursiveTypename(
-  elem: IDATA,
+  elem: { [key: string]: any },
   typename: string,
   data: object,
   path: Array<string>,
-  result: { status: boolean },
+  result: { status: boolean }
 ) {
   if (!path || !elem) return false;
 
@@ -93,7 +87,7 @@ function recursiveTypename(
   if (Array.isArray(nextElem)) {
     // recurse each next element if in the presence of a nested array
     nextElem.forEach(el =>
-      recursiveTypename(el, typename, data, nextPath, result),
+      recursiveTypename(el, typename, data, nextPath, result)
     );
   } else {
     // recurse next element
@@ -118,11 +112,11 @@ function addTypenameInobject(typename: string, target: any) {
   if (Array.isArray(target)) {
     return target.map(nestedobject => ({
       __typename: typename,
-      ...nestedobject,
+      ...nestedobject
     }));
   }
   return {
     __typename: typename,
-    ...target,
+    ...target
   };
 }
