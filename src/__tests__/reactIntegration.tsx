@@ -35,11 +35,11 @@ const ApolloClientProvider = ({ children }: { children: React.ReactNode }) => (
   <ApolloProvider client={client}>{children}</ApolloProvider>
 );
 
-const Hello = () => <ApolloClientProvider>Hello World</ApolloClientProvider>;
+const App = () => <ApolloClientProvider>Hello World</ApolloClientProvider>;
 
 describe("test react", () => {
   it("should render", () => {
-    const { getByText } = render(<Hello />);
+    const { getByText } = render(<App />);
     expect(getByText("Hello World")).toBeTruthy();
   });
 });
