@@ -19,6 +19,29 @@ function patch(
   return patchSuccess;
 }
 
+function artificiallyAddNestedFields(typeDefinition: { [key: string]: any }) {
+  const rootTypes = Object.keys(typeDefinition);
+  rootTypes.forEach(rootType => {
+    const interiorTypes: Array<string> = Object.values(
+      typeDefinition[rootType]
+    );
+    const nestedTypes = interiorTypes.filter(type => rootTypes.includes(type));
+
+    if (nestedTypes.length > 0) {
+      // move nested types inside __nested: {...} prop
+      typeDefinition[rootType].__nested = {};
+      nestedTypes.forEach(type => {
+        const typeKey =
+          Object.keys(typeDefinition[rootType]).find(
+            key => typeDefinition[rootType][key] == type
+          ) || "";
+        typeDefinition[rootType].__nested[typeKey] = type;
+        delete typeDefinition[rootType][typeKey];
+      });
+    }
+  });
+}
+
 // TODO: add to doc that only root types are added as keys to the
 // out patcher, and every root (i.e. Query) needs a root type
 // TODO: add to doc that it doesnt apply the __typename to the
@@ -27,6 +50,8 @@ function patch(
 export default function typePatcherFactory(typeDefinition: {
   [key: string]: any;
 }) {
+  artificiallyAddNestedFields(typeDefinition);
+
   const out: { [key: string]: any } = {
     self: function() {
       return this;
