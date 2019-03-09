@@ -29,14 +29,26 @@
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@types/graphql": "^14.0.7",
     "@types/jest": "^24.0.9",
+    "@types/react": "^16.8.7",
+    "apollo-cache-inmemory": "^1.5.1",
+    "apollo-client": "^2.5.1",
+    "apollo-link": "^1.2.9",
+    "apollo-link-rest": "^0.7.0",
+    "apollo-link-state": "^0.4.2",
     "babel-loader": "^8.0.5",
+    "graphql": "^14.1.1",
+    "node-fetch": "^2.3.0",
+    "react": "^16.8.4",
+    "react-apollo": "^2.5.2",
+    "react-dom": "^16.8.4",
+    "react-testing-library": "^6.0.0",
     "typescript": "^3.3.3333",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
-  },
-  "dependencies": {
+    "webpack-cli": "^3.2.3",
     "jest": "^24.3.0"
   }
 }

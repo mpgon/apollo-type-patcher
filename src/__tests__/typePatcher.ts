@@ -1,9 +1,9 @@
 import typePatcher from "../index";
 import mockProfessor from "../__mocks__/professor";
-import mockTypes from "../__mocks__/types";
+import typeDefs from "../__mocks__/types";
 
 describe("typePatcher factory", () => {
-  const patcher = typePatcher(mockTypes);
+  const patcher = typePatcher(typeDefs);
   const professor: any = mockProfessor();
   patcher.Professor(professor);
 
