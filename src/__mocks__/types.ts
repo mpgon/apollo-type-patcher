@@ -1,16 +1,15 @@
 export default {
-  User: {
-    address: "Address",
-    __nested: {
-      cart: "Cart",
-    },
-  },
-  Cart: {
-    __nested: {
-      products: "Product",
-    },
-  },
-  Product: {
+  Professor: {
     department: "Department",
+    __nested: {
+      classes: "Class",
+      scolarship_applications: "ScolarshipApplication"
+    }
   },
+  Class: {
+    enrolled_students: "Student"
+  },
+  ScolarshipApplication: {
+    "process.insurance": "Insurance"
+  }
 };
