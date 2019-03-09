@@ -34,6 +34,9 @@ describe("typePatcher factory", () => {
     });
     professor.scolarship_applications.forEach((application: any) => {
       expect(application.__typename).toEqual("ScolarshipApplication");
+      expect(application.co_assistant_professor.__typename).toEqual(
+        "Professor"
+      );
 
       expect(application.process.insurance.__typename).toEqual("Insurance");
     });

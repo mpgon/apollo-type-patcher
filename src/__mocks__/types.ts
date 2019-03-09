@@ -10,6 +10,9 @@ export default {
     enrolled_students: "Student"
   },
   ScolarshipApplication: {
-    "process.insurance": "Insurance"
+    "process.insurance": "Insurance",
+    __nested: {
+      co_assistant_professor: "Professor"
+    }
   }
 };

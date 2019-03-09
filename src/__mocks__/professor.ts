@@ -32,7 +32,8 @@ export default function mockProfessor() {
             id: 99,
             name: "KAI GmbH"
           }
-        }
+        },
+        co_assistant_professor: { id: 1, name: "Linda Fontoura" }
       },
       {
         id: 501,
@@ -44,7 +45,8 @@ export default function mockProfessor() {
             id: 100,
             name: "Ubehu GmbH"
           }
-        }
+        },
+        co_assistant_professor: { id: 1, name: "Linda Fontoura" }
       }
     ]
   };
