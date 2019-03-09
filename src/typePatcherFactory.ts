@@ -23,6 +23,7 @@ function patch(
 // out patcher, and every root (i.e. Query) needs a root type
 // TODO: add to doc that it doesnt apply the __typename to the
 // root element, because Apollo already does that for us
+// TODO: add to doc cyclical references
 export default function typePatcherFactory(typeDefinition: {
   [key: string]: any;
 }) {
