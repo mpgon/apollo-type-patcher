@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "type patcher for apollo-link-rest",
   "main": "src/index.js",
+  "jest": {
+    "setupFiles": [
+      "./jest.setup.js"
+    ]
+  },
   "scripts": {
     "test": "jest",
     "build": "webpack --mode=production",

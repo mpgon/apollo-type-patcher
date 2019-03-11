@@ -1,41 +1,10 @@
 import React from "react";
-import typeDefs from "../__mocks__/types";
-import typePatcher from "../index";
 import { render, wait } from "react-testing-library";
-import { ApolloClient } from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { RestLink } from "apollo-link-rest";
-import { ApolloProvider, Query } from "react-apollo";
-import { ApolloLink } from "apollo-link";
-import { withClientState } from "apollo-link-state";
+import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import mockProfessor from "../__mocks__/professor";
 import { testProfessor } from "./typePatcher";
-// Polyfills necessary for test environment
-import "@babel/polyfill";
-// @ts-ignore
-import nodeFetch from "node-fetch";
-import fetchMock from "jest-fetch-mock";
-
-// @ts-ignore
-global.Headers = nodeFetch.Headers;
-// @ts-ignore
-global.fetch = fetchMock;
-
-const restLink = new RestLink({
-  uri: "--fetch-is-mocked--",
-  typePatcher: typePatcher(typeDefs)
-});
-const cache = new InMemoryCache();
-const stateLink = withClientState({
-  cache,
-  resolvers: {}
-});
-
-const client = new ApolloClient({
-  cache,
-  link: ApolloLink.from([stateLink, restLink])
-});
+import ApolloClientProvider from "./utils/ApolloClientProvider";
 
 const GET_PROFESSOR = gql`
   query getProfessor($id: ID!) {
@@ -59,10 +28,6 @@ const GET_PROFESSOR = gql`
   }
 `;
 
-const ApolloClientProvider = ({ children }: { children: React.ReactNode }) => (
-  <ApolloProvider client={client}>{children}</ApolloProvider>
-);
-
 // auxiliar var to save data fetched with apollo
 let PROFESSOR_VAR: any = undefined;
 
@@ -81,7 +46,7 @@ const App = () => (
   </ApolloClientProvider>
 );
 
-describe("test react integration", () => {
+describe("test react and apollo integration", () => {
   // @ts-ignore
   fetch.mockResponse(JSON.stringify(mockProfessor()));
 
