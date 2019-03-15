@@ -31,7 +31,7 @@ typeDefinitions = {
 ```
 for example:
 ```javascript
-// typeDefs.js
+// typeDefinitions.js
 export const typeDefinitions = {
     Student: {
         classes: Class,
