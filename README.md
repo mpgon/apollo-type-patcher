@@ -143,7 +143,7 @@ student: {
 ```
 
 ## Contribute
-After clone the repo locally, you can run:
+After cloning the repo locally, you can run:
 ```node
 yarn // install dependencies
 yarn build // build the bundle w/webpack
