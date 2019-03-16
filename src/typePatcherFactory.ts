@@ -1,10 +1,26 @@
 import addTypename from "./addTypename";
+import { TypeDefinitions, FieldTypeMap, TypePatcher } from "./types";
 
+/**
+ * Calls the addTypename for the types under the
+ * root value supplied
+ *
+ * @param data The base data response object
+ *
+ * @param root The field in the response
+ 
+ * @param rootValue The type of the root field
+ *
+ * @param types The fields and corresponding types
+ * nested under the root
+ *
+ * @returns True if the typename property was added
+ */
 function patch(
-  data: any,
+  data: object,
   root: string = "",
   rootValue: string = "",
-  types: Array<{ field: string; type: string }>
+  types: FieldTypeMap
 ) {
   let patchSuccess = false;
   let addResult = false;
@@ -19,58 +35,71 @@ function patch(
   return patchSuccess;
 }
 
-function artificiallyAddNestedFields(typeDefinition: { [key: string]: any }) {
-  const rootTypes = Object.keys(typeDefinition);
+/**
+ * Utility function to mark the field types that have
+ * definitions of their own under a 'nested' prop
+ *
+ * @param typeDefinitions The type definitions object
+ * that map each object in a response's field with it's type
+ *
+ */
+function artificiallyAddNestedFields(typeDefinitions: TypeDefinitions) {
+  const rootTypes = Object.keys(typeDefinitions);
   rootTypes.forEach(rootType => {
     const interiorTypes: Array<string> = Object.values(
-      typeDefinition[rootType]
+      typeDefinitions[rootType]
     );
     const nestedTypes = interiorTypes.filter(type => rootTypes.includes(type));
 
     if (nestedTypes.length > 0) {
       // move nested types inside __nested: {...} prop
-      typeDefinition[rootType].__nested = {};
+      // e.g. { Type1: { Field1: Type2 }, Type2: {...} }
+      // becomes { Type1: __nested: { Field1: Type2 }, Type2: {...} }
+      typeDefinitions[rootType].__nested = {};
       nestedTypes.forEach(type => {
         const typeKey =
-          Object.keys(typeDefinition[rootType]).find(
-            key => typeDefinition[rootType][key] == type
+          Object.keys(typeDefinitions[rootType]).find(
+            key => typeDefinitions[rootType][key] == type
           ) || "";
-        typeDefinition[rootType].__nested[typeKey] = type;
-        delete typeDefinition[rootType][typeKey];
+        typeDefinitions[rootType].__nested[typeKey] = type;
+        delete typeDefinitions[rootType][typeKey];
       });
     }
   });
 }
 
-// TODO: add to doc that only root types are added as keys to the
-// out patcher, and every root (i.e. Query) needs a root type
-// TODO: add to doc that it doesnt apply the __typename to the
-// root element, because Apollo already does that for us
-// TODO: add to doc cyclical references
-export default function typePatcherFactory(typeDefinition: {
-  [key: string]: any;
-}) {
-  artificiallyAddNestedFields(typeDefinition);
+/**
+ * Generates the type patcher functions
+ *
+ * @param typeDefinitions The type definitions object
+ * that map each object in a response's field with it's type
+ *
+ * @returns the type patcher functions
+ */
+export default function typePatcherFactory(typeDefinitions: TypeDefinitions) {
+  artificiallyAddNestedFields(typeDefinitions);
 
-  const out: { [key: string]: any } = {
+  const out: TypePatcher = {
+    // 'self' is necessary to allow the typePatcher
+    // to call other type functions from itself
     self: function() {
       return this;
     }
   };
-  const typePatchers: { [key: string]: any } = {};
+  const typePatchers: { [key: string]: FieldTypeMap } = {};
 
-  const types = Object.keys(typeDefinition);
+  const types = Object.keys(typeDefinitions);
 
   // create type patchers
   types.forEach(type => {
-    const fields = Object.keys(typeDefinition[type]).filter(
+    const fields = Object.keys(typeDefinitions[type]).filter(
       field => field !== "__nested"
     );
-    const typesPatcher: Array<{ field: string; type: string }> = [];
+    const fieldTypeMap: FieldTypeMap = [];
     fields.forEach(field =>
-      typesPatcher.push({ field, type: typeDefinition[type][field] })
+      fieldTypeMap.push({ field, type: typeDefinitions[type][field] })
     );
-    typePatchers[type] = typesPatcher;
+    typePatchers[type] = fieldTypeMap;
   });
 
   // create patch functions
@@ -84,11 +113,11 @@ export default function typePatcherFactory(typeDefinition: {
         const patchSuccess = patch(data, pathAccumulator, type, typePatcher);
         if (patchSuccess || pathAccumulator === "") {
           // nested
-          const nestedFields = typeDefinition[type].__nested
-            ? Object.keys(typeDefinition[type].__nested)
+          const nestedFields = typeDefinitions[type].__nested
+            ? Object.keys(typeDefinitions[type].__nested)
             : [];
           nestedFields.forEach(nestedField => {
-            const nestedType = typeDefinition[type].__nested[nestedField];
+            const nestedType = typeDefinitions[type].__nested[nestedField];
             const nextPath =
               pathAccumulator === ""
                 ? nestedField
