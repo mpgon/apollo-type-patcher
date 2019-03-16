@@ -1,31 +1,13 @@
 /**
  * Adds a __typename to an object/array with possible nested objects/arrays
- * e.g.
- * data = {
- *     careprovider: {
- *         events: [
- *             {id: 0}
- *         ]
- *     }
- * }
- * path = careprovider.events
- * typename = "Event"
  *
- * output = {
- *     careprovider: {
- *         events: [
- *             {id: 0, __typename: Event}
- *         ]
- *     }
- * }
+ * @param data The base data response object
  *
- * @param {any} data The base data object
+ * @param path The path from the base data until the target
  *
- * @param {Array} path The path from the base data until the target
+ * @param typename The __typename value
  *
- * @param {any} typename The __typename value
- *
- * @returns {boolean} True if the typename property was added
+ * @returns True if the typename property was added
  */
 export default function addTypename(data: any, path: string, typename: string) {
   const pathArr = path.split(".");
@@ -39,19 +21,19 @@ export default function addTypename(data: any, path: string, typename: string) {
  * base data until the nested target object to which the
  * __typename property should be added, and adds it
  *
- * @param {any} elem The object being updated every iteration
+ * @param elem The object being updated every iteration
  * initial it equals data
  *
- * @param {any} typename The __typename value
+ * @param typename The __typename value
  *
- * @param {any} data The base data object that nests the target
+ * @param data The base data response object that nests the target
  * It menains immutable through all iterations
  *
- * @param {Array} path The path to be recursed from the base data
+ * @param path The path to be recursed from the base data
  * until the target. In every iteration but the n-1, the path array
  * is shifted
  *
- * @returns {any} the updated data
+ * @returns the updated data
  */
 function recursiveTypename(
   elem: { [key: string]: any },
@@ -101,11 +83,11 @@ function recursiveTypename(
  * If the target is an array, it adds the __typename
  * to all of its elements
  *
- * @param {any} typename The __typename value
+ * @param typename The __typename value
  *
- * @param {any} target The target object or array
+ * @param target The target object or array
  *
- * @returns {any} the target with the added __typename property
+ * @returns the target with the added __typename property
  */
 function addTypenameInobject(typename: string, target: any) {
   if (target === null) return null;
