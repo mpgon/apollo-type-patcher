@@ -1,62 +1,70 @@
 {
-  "name": "apollo-type-patcher",
-  "version": "1.0.0",
-  "description": "type patcher for apollo-link-rest",
-  "main": "src/index.js",
-  "jest": {
-    "setupFiles": [
-      "./jest.setup.js"
-    ]
-  },
-  "scripts": {
-    "test": "jest",
-    "build": "webpack --mode=production",
-    "check-types": "tsc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MiguelGPereira/apollo-type-patcher.git"
-  },
-  "keywords": [
-    "apollo",
-    "link",
-    "rest",
-    "type",
-    "patcher",
-    "typepatcher"
-  ],
-  "author": "tbd",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/MiguelGPereira/apollo-type-patcher/issues"
-  },
-  "homepage": "https://github.com/MiguelGPereira/apollo-type-patcher#readme",
-  "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.3.4",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
-    "@types/graphql": "^14.0.7",
-    "@types/jest": "^24.0.9",
-    "@types/react": "^16.8.7",
-    "apollo-cache-inmemory": "^1.5.1",
-    "apollo-client": "^2.5.1",
-    "apollo-link": "^1.2.9",
-    "apollo-link-rest": "^0.7.0",
-    "apollo-link-state": "^0.4.2",
-    "babel-loader": "^8.0.5",
-    "graphql": "^14.1.1",
-    "graphql-tag": "^2.10.1",
-    "jest": "^24.3.0",
-    "jest-fetch-mock": "^2.1.1",
-    "node-fetch": "^2.3.0",
-    "react": "^16.8.4",
-    "react-apollo": "^2.5.2",
-    "react-dom": "^16.8.4",
-    "react-testing-library": "^6.0.0",
-    "typescript": "^3.3.3333",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
-  }
+    "name": "apollo-type-patcher",
+    "version": "1.0.0",
+    "description": "type patcher for apollo-link-rest",
+    "main": "src/index.js",
+    "jest": {
+        "setupFiles": [
+            "./jest.setup.js"
+        ]
+    },
+    "scripts": {
+        "test": "jest",
+        "build": "webpack --mode=production",
+        "check-types": "tsc",
+        "eslint-check": "eslint .",
+        "eslint-fix": "eslint --fix ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MiguelGPereira/apollo-type-patcher.git"
+    },
+    "keywords": [
+        "apollo",
+        "link",
+        "rest",
+        "type",
+        "patcher",
+        "typepatcher"
+    ],
+    "author": "tbd",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/MiguelGPereira/apollo-type-patcher/issues"
+    },
+    "homepage": "https://github.com/MiguelGPereira/apollo-type-patcher#readme",
+    "devDependencies": {
+        "@babel/core": "^7.3.4",
+        "@babel/polyfill": "^7.2.5",
+        "@babel/preset-env": "^7.3.4",
+        "@babel/preset-react": "^7.0.0",
+        "@babel/preset-typescript": "^7.3.3",
+        "@types/graphql": "^14.0.7",
+        "@types/jest": "^24.0.9",
+        "@types/react": "^16.8.7",
+        "@typescript-eslint/eslint-plugin": "^1.4.2",
+        "@typescript-eslint/parser": "^1.4.2",
+        "apollo-cache-inmemory": "^1.5.1",
+        "apollo-client": "^2.5.1",
+        "apollo-link": "^1.2.9",
+        "apollo-link-rest": "^0.7.0",
+        "apollo-link-state": "^0.4.2",
+        "babel-loader": "^8.0.5",
+        "eslint": "^5.15.2",
+        "eslint-config-prettier": "^4.1.0",
+        "eslint-plugin-prettier": "^3.0.1",
+        "graphql": "^14.1.1",
+        "graphql-tag": "^2.10.1",
+        "jest": "^24.3.0",
+        "jest-fetch-mock": "^2.1.1",
+        "node-fetch": "^2.3.0",
+        "prettier": "^1.16.4",
+        "react": "^16.8.4",
+        "react-apollo": "^2.5.2",
+        "react-dom": "^16.8.4",
+        "react-testing-library": "^6.0.0",
+        "typescript": "^3.3.3333",
+        "webpack": "^4.29.6",
+        "webpack-cli": "^3.2.3"
+    }
 }

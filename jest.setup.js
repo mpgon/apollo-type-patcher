@@ -1,3 +1,5 @@
+/* eslint @typescript-eslint/no-var-requires: 0 */
+
 // Polyfills necessary for test environment
 require("@babel/polyfill");
 
