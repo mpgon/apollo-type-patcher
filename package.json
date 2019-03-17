@@ -1,8 +1,11 @@
 {
     "name": "apollo-type-patcher",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "description": "type patcher for apollo-link-rest",
-    "main": "src/index.js",
+    "main": "dist/app.bundle.js",
+    "files": [
+        "dist"
+    ],
     "jest": {
         "setupFiles": [
             "./jest.setup.js"
@@ -10,6 +13,7 @@
     },
     "scripts": {
         "test": "jest",
+        "prebuild": "rimraf dist",
         "build": "webpack --mode=production",
         "check-types": "tsc",
         "eslint-check": "eslint .",
@@ -65,6 +69,7 @@
         "react-apollo": "^2.5.2",
         "react-dom": "^16.8.4",
         "react-testing-library": "^6.0.0",
+        "rimraf": "^2.6.3",
         "typescript": "^3.3.3333",
         "webpack": "^4.29.6",
         "webpack-cli": "^3.2.3"

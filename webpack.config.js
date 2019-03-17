@@ -7,6 +7,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "app.bundle.js",
+        library: "apollo-type-patcher",
+        libraryTarget: "commonjs2",
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".json"],

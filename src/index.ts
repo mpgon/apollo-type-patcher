@@ -1,3 +1,3 @@
-import typePatcher from "./typePatcher";
+import { typePatcher } from "./typePatcher";
 
-export default typePatcher;
+export { typePatcher };

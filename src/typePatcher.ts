@@ -1,6 +1,6 @@
-import typePatcherFactory from "./typePatcherFactory";
+import { typePatcherFactory } from "./typePatcherFactory";
 import { TypeDefinitions } from "./types";
 
-export default function typePatcher(typeDefinitions: TypeDefinitions) {
-  return typePatcherFactory(typeDefinitions);
+export function typePatcher(typeDefinitions: TypeDefinitions) {
+    return typePatcherFactory(typeDefinitions);
 }
