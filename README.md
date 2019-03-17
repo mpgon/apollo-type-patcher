@@ -6,7 +6,7 @@ Utility to generate **Type Patcher** functions for [apollo-link-rest](https://gi
 Jump to: [Goal](#goal) | [Installation](#installation) | [Usage](#usage) | [How it works](#how-it-works) | [Features](#features) | [Contribute](#contribute)
 
 ## Goal
-The [apollo-link-rest](https://github.com/apollographql/apollo-link-rest) library facilitates a smooth transition of projects into GraphQL by allowing you leverage the power of GraphQL while still being powered by a REST API (read some of the benefits [here](https://www.apollographql.com/docs/link/links/rest.html)).
+The [apollo-link-rest](https://github.com/apollographql/apollo-link-rest) library enables a smooth, frontend-first transition into GraphQL, by allowing you to leverage this query language in a project powered by a REST API (read some of the reasons [here](https://www.apollographql.com/docs/link/links/rest.html)).
 However, since you don't have a schema for your _type definitions_ (because you don't have a GraphQL server), you have to generate the **type patcher** functions [yourself](https://www.apollographql.com/docs/link/links/rest.html#options.typePatcher). This is a very verbose, time consuming and error-prone process, specially if you're trying to consume endpoints with a lot of nested fields whose types you want to normalize into the cache. 
 
 The goal of this `apollo-type-patcher` library is to generate the **type patcher** functions easily and in a safe maintanable way, with an object contaiting your type definition mappings.
