@@ -19,7 +19,7 @@ yarn add apollo-type-patcher
 ```
 
 ## Usage
-> [Try it out in the browser](https://codesandbox.io)
+> Try it out in the browser(soon!)
 
 1. Create your type definitions object. This object is in the form of
 ```javascript
