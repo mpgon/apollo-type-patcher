@@ -9,7 +9,7 @@ Jump to: [Goal](#goal) | [Installation](#installation) | [Usage](#usage) | [How
 The [apollo-link-rest](https://github.com/apollographql/apollo-link-rest) library enables a smooth, frontend-first transition into GraphQL, by allowing you to leverage this query language in a project powered by a REST API (read some of the reasons [here](https://www.apollographql.com/docs/link/links/rest.html)).
 However, since you don't have a schema for your _type definitions_ (because you don't have a GraphQL server), you have to generate the **type patcher** functions [yourself](https://www.apollographql.com/docs/link/links/rest.html#options.typePatcher). This is a very verbose, time consuming and error-prone process, specially if you're trying to consume endpoints with a lot of nested fields whose types you want to normalize into the cache. 
 
-The goal of this `apollo-type-patcher` library is to generate the **type patcher** functions easily and in a safe maintanable way, with an object contaiting your type definition mappings.
+The goal of this `apollo-type-patcher` library is to generate the **type patcher** functions easily in a safe, maintainable way, with an object contaiting your type definition mappings.
 
 
 ## Installation
@@ -19,7 +19,7 @@ yarn add apollo-type-patcher
 ```
 
 ## Usage
-> Try it out in the browser(soon!)
+> [Try it out in the browser](https://codesandbox.io/s/jll0xolo49?fontsize=14)
 
 1. Create your type definitions object. This object is in the form of
 ```javascript
@@ -46,7 +46,7 @@ export const typeDefinitions = {
 ```
 2. When setting up your Apollo link rest configuration, add the type patcher as follows:
 ```jsx
-import typePatcher from "apollo-type-patcher";
+import { typePatcher } from "apollo-type-patcher";
 import { RestLink } from "apollo-link-rest";
 // your type definitions
 import { typeDefinitions } from "./typeDefinitions";
