@@ -17,22 +17,24 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/MiguelGPereira/apollo-type-patcher.git"
+        "url": "git+https://github.com/mpgon/apollo-type-patcher.git"
     },
     "keywords": [
         "apollo",
-        "link",
-        "rest",
+        "apollo-link",
+        "apollo-link-rest",
         "type",
         "patcher",
-        "typepatcher"
+        "typepatcher",
+        "graphql",
+        "typename"
     ],
-    "author": "tbd",
+    "author": "Miguel Pereira <miguelgopereira@gmail.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/MiguelGPereira/apollo-type-patcher/issues"
+        "url": "https://github.com/mpgon/apollo-type-patcher/issues"
     },
-    "homepage": "https://github.com/MiguelGPereira/apollo-type-patcher#readme",
+    "homepage": "https://github.com/mpgon/apollo-type-patcher#readme",
     "devDependencies": {
         "@babel/core": "^7.3.4",
         "@babel/polyfill": "^7.2.5",
