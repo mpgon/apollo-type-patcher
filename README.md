@@ -151,3 +151,4 @@ yarn // install dependencies
 yarn build // build the bundle w/webpack
 yarn test // run unit tests
 ```
+Done with the support of [@cgcote](https://github.com/cgcote) and [Recare](https://github.com/veyo-care)!
