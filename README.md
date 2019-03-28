@@ -2,6 +2,9 @@
 Utility to generate **Type Patcher** functions for [apollo-link-rest](https://github.com/apollographql/apollo-link-rest).
 
 [![Build Status](https://dev.azure.com/miguelgopereira/apollo-type-patcher/_apis/build/status/mpgon.apollo-type-patcher?branchName=master)](https://dev.azure.com/miguelgopereira/apollo-type-patcher/_build/latest?definitionId=2&branchName=master)
+![npm bundle size](https://img.shields.io/bundlephobia/min/apollo-type-patcher.svg)
+![npm](https://img.shields.io/npm/v/apollo-type-patcher.svg?label=latest)
+![npm](https://img.shields.io/npm/dt/apollo-type-patcher.svg)
 
 Jump to: [Goal](#goal) | [Installation](#installation) | [Usage](#usage) | [How it works](#how-it-works) | [Features](#features) | [Contribute](#contribute)
 
