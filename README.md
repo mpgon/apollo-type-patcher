@@ -39,11 +39,11 @@ for example:
 // typeDefinitions.js
 export const typeDefinitions = {
     Student: {
-        classes: Class,
-        extra_activities: Activities
+        classes: "Class",
+        extra_activities: "Activities"
     },
     Class: {
-        chair_professor: Professor
+        chair_professor: "Professor"
     }
 }
 ```
